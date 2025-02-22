@@ -1,4 +1,4 @@
-hame: Hello
+name: Hello
 on: push
 jobs:
   hello:
