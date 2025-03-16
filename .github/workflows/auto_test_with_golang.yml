@@ -11,3 +11,31 @@ jobs:
         with:
           go-version: '1.22'
       - run: go test auto_test_with_golang/excellent/*.go # ステップ3: テストの実行
+
+
+## !! Memo !!
+# pull_requestでの動かし方
+# ローカルリポジトリでブランチを作る。
+# git checkout -b <ブランチ名>
+# いつも通り編集し、git add; git commit;
+# git push origin <ブランチ名>
+#
+# プルリクエストを送る
+# GitHub→リポジトリ名→Compare&Pull requestを選択する
+# レビュー依頼をする
+# Reviewersのところにレビューして欲しい人を追加する
+# approveをもらったらマージする
+# ブランチをmain(master)に変更する
+# git checkout main
+# ローカルのmain(master)ブランチをリモートの最新と一致させる
+# git pull origin main --rebase
+# 1.で切った作業ブランチを削除する
+# git branch -d <ブランチ名>
+
+## ブラウザ側でブランチ作成可能
+# ブランチ選択プルダウンをクリックして、Switch branches/tagsを出す
+# 新しいbranch名を入力
+# [ブランチの作成] を選択します
+# ブランチ指定でclone
+# マージリクエストはブラウザ上で実行。
+
