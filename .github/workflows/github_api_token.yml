@@ -1,0 +1,21 @@
+name: Comment
+on: pull_request
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    permissions:           # GITHUB_TOKENの権限を指定
+      pull-requests: write # プルリクエストの書き込みを許可
+      contents: read       # ソースコードの読み込みを許可
+    steps:
+      - uses: actions/checkout@v4
+      - run: gh pr comment "${GITHUB_HEAD_REF}" --body "Hello, ${GITHUB_ACTOR}"   # GITHUB_HEAD_REFはソースブランチ名が入る
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub CLI用クレデンシャル GitHub Actionが自動生成する。事前登録不要
+                        # ${{ github.token }} # github コンテキストからGITHUB_TOKENを取得する事も可能。
+       #env:
+       #  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}   # こんな書き方もあるぞ。 公式から。
+                                                  # https://docs.github.com/ja/actions/security-for-github-actions/security-guides/automatic-token-authentication
+
+       ## !! NOTICE !!
+       ## 本に答えが書いていた。
+       ## GITHUB_TOKEN環境変数またはGH_TOKEN環境変数が定義されていると、Github CLIは自動的にクレデンシャルと認識する。
