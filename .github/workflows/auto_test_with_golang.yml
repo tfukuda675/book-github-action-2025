@@ -10,10 +10,8 @@ jobs:
       - uses: actions/setup-go@v5      # ステップ2: 言語セットアップ
         with:
           go-version: '1.22'
-      - run: go test auto_test_with_golang/excellent/*.go # ステップ3: テストの実行
-
-
-## !! Memo !!
+      - run: go test auto_test_with_golang/excellent/*.go   # ステップ3: テストの実行
+# Memo
 # pull_requestでの動かし方
 # ローカルリポジトリでブランチを作る。
 # git checkout -b <ブランチ名>
@@ -31,7 +29,6 @@ jobs:
 # git pull origin main --rebase
 # 1.で切った作業ブランチを削除する
 # git branch -d <ブランチ名>
-
 ## ブラウザ側でブランチ作成可能
 # ブランチ選択プルダウンをクリックして、Switch branches/tagsを出す
 # 新しいbranch名を入力
