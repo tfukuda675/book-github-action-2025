@@ -1,0 +1,24 @@
+## GITHUB_OUTPUT環境変数の使い方
+
+## !! NOTICE !!
+# GITHUB_ENV環境変数よりはこちらを利用、GITHUB_ENVはglobal変数になり危険。
+
+name: GITHUB_OUTPUT
+on: push
+jobs:
+  share:
+    runs-on: ubuntu-latest
+    steps:
+      - id: source                                     # ステップIDを設定
+        run: echo "result=Hello" >> "${GITHUB_OUTPUT}" # GITHUB_OUTPUTへ書き出し
+      - env:
+          RESULT: ${{ steps.source.outputs.result }}   # stepsコンテキストから参照
+        run: echo "${RESULT}"
+
+# GITHUB_OUTPUT環境変数
+# - id: <step-id>
+#   run: echo "<key>=<value>" >> "${GITHUB_OUTPUT}"
+# 受け取り側は、
+# ${{ steps.<step-id>.outputs.<key> }} # ステップIDと参照したい値のキー名をそれぞれ指定
+
+
